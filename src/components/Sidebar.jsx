@@ -1,8 +1,18 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Home } from 'react-feather'
+import { spotifyApi } from '@/pages/_app'
 
 export default function Sidebar() {
+    useEffect(() => {
+        async function getPlaylists() {
+            const data = await spotifyApi.getUserPlaylists()
+            console.log(data)
+        }
+
+        getPlaylists()
+    }, [])
+
     return (
         <aside className='w-full max-w-xs overflow-y-scroll bg-bg p-6'>
             <Link
