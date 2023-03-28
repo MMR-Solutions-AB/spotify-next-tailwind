@@ -1,17 +1,17 @@
 import Link from 'next/link'
-import React, { useEffect } from 'react'
 import { Home } from 'react-feather'
 import { spotifyApi } from '@/pages/_app'
+import { useQuery } from '@tanstack/react-query'
 
 export default function Sidebar() {
-    useEffect(() => {
-        async function getPlaylists() {
-            const data = await spotifyApi.getUserPlaylists()
-            console.log(data)
-        }
-
-        getPlaylists()
-    }, [])
+    const {
+        data: playlists,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ['playlists'],
+        queryFn: async () => (await spotifyApi.getUserPlaylists()).body.items,
+    })
 
     return (
         <aside className='w-full max-w-xs overflow-y-scroll bg-bg p-6'>
@@ -24,16 +24,16 @@ export default function Sidebar() {
             </Link>
             <hr className='my-3 border-text-dimmed/50' />
             <div className=''>
-                {Array(100)
-                    .fill(null)
-                    .map(() => (
-                        <Link
-                            href='/playlist/abc'
-                            className='block py-1 text-text-dimmed transition-colors hover:text-text'
-                        >
-                            hej
-                        </Link>
-                    ))}
+                {isLoading
+                    ? 'loading...'
+                    : playlists.map((playlist) => (
+                          <Link
+                              href='/playlist/abc'
+                              className='block py-1 text-text-dimmed transition-colors hover:text-text'
+                          >
+                              {playlist.name}
+                          </Link>
+                      ))}
             </div>
         </aside>
     )
