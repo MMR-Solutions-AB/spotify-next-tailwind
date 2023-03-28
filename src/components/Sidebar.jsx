@@ -17,8 +17,9 @@ export default function Sidebar() {
         if (isLoading)
             return Array(10)
                 .fill(null)
-                .map(() => (
+                .map((_, i) => (
                     <div
+                        key={i}
                         className='mb-1.5 h-6 animate-pulse rounded-full bg-neutral-800'
                         style={{
                             width: Math.floor(Math.random() * 40 + 40) + '%',
