@@ -19,7 +19,6 @@ export default function App({ Component, pageProps }) {
     if (typeof window !== 'undefined' && router.asPath !== '/login') {
         const accessToken =
             getAccessTokenFromUrl() || sessionStorage.getItem('spotify-key')
-        console.log(accessToken)
 
         if (accessToken) {
             sessionStorage.setItem('spotify-key', accessToken)

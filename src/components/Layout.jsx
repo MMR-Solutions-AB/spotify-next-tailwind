@@ -1,3 +1,4 @@
+import Player from './Player'
 import Sidebar from './Sidebar'
 
 export default function Layout({ children }) {
@@ -7,7 +8,7 @@ export default function Layout({ children }) {
                 <Sidebar />
                 <main className='flex-1 overflow-y-scroll'>{children}</main>
             </div>
-            <footer className='h-[59px]'>this is a player component</footer>
+            <Player />
         </div>
     )
 }
