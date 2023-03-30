@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { spotifyApi } from '@/pages/_app'
 import PlayerControls from './PlayerControls'
+import PlayerVolume from './PlayerVolume'
 
 export default function Player() {
     const [device, setDevice] = useState(null)
@@ -26,11 +27,11 @@ export default function Player() {
             })
 
             console.log('player: ', player)
+            setLocalPlayer(player)
 
             player.addListener('ready', ({ device_id }) => {
                 console.log('Ready with device_id: ', device_id)
                 setDevice(device_id)
-                setLocalPlayer(player)
             })
 
             player.addListener('player_state_changed', (state) => {
@@ -69,7 +70,7 @@ export default function Player() {
         }
     }, [localPlayer])
 
-    if (!track) return <div>no player, please connect</div>
+    if (!track || !localPlayer) return <div>no player, please connect</div>
 
     return (
         <div className='flex items-center p-4'>
@@ -95,7 +96,9 @@ export default function Player() {
                     track={track}
                 />
             </div>
-            <div className=''>volume ska vara här</div>
+            <div className=''>
+                <PlayerVolume player={localPlayer} />
+            </div>
         </div>
     )
 }
