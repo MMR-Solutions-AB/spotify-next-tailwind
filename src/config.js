@@ -1,7 +1,7 @@
 export const authEndpoint = 'https://accounts.spotify.com/authorize'
 export const clientId = process.env.NEXT_PUBLIC_CLIENT_ID
 export const liveURL = process.env.NEXT_PUBLIC_LIVE_URL
-export const devURL = 'http://localhost:3001/'
+export const devURL = 'http://localhost:3000/'
 export const redirectURL =
     process.env.NODE_ENV === 'production' ? liveURL : devURL
 export const scopes = [

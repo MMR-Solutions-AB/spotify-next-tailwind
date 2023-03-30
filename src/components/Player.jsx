@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { spotifyApi } from '@/pages/_app'
+import PlayerControls from './PlayerControls'
 
 export default function Player() {
     const [device, setDevice] = useState(null)
@@ -68,7 +69,33 @@ export default function Player() {
         }
     }, [localPlayer])
 
-    if (!localPlayer || !track) return <div>no player, please connect</div>
+    if (!track) return <div>no player, please connect</div>
 
-    return <div>player</div>
+    return (
+        <div className='flex items-center p-4'>
+            <div className='flex items-center'>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src={track.album.images[0].url}
+                    alt=''
+                    className='mr-4 h-14 w-14 flex-shrink-0'
+                />
+                <div>
+                    <h4 className='text-sm'>{track.name}</h4>
+                    <p className='text-xs text-text-dimmed'>
+                        {track.artists[0].name}
+                    </p>
+                </div>
+            </div>
+            <div className='flex-1 text-center'>
+                <PlayerControls
+                    player={localPlayer}
+                    isPaused={isPaused}
+                    position={position}
+                    track={track}
+                />
+            </div>
+            <div className=''>volume ska vara här</div>
+        </div>
+    )
 }
