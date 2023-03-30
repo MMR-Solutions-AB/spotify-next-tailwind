@@ -41,7 +41,7 @@ export default function Sidebar() {
     }
 
     return (
-        <aside className='w-full max-w-xs overflow-y-scroll bg-bg p-6'>
+        <aside className='w-full max-w-xs overflow-y-scroll bg-bg p-6 max-md:hidden'>
             <Link
                 href='/'
                 className='flex w-max items-center gap-4 text-text-dimmed transition-colors hover:text-text'

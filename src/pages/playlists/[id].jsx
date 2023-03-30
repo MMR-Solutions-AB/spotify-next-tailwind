@@ -31,19 +31,21 @@ export default function Playlist() {
                 <img
                     src={playlist.images[0]?.url}
                     alt='playlist image'
-                    className='h-60 w-60 flex-shrink-0'
+                    className='h-28 w-28 flex-shrink-0 md:h-60 md:w-60'
                 />
                 <div>
                     <p className='font-semibold text-text-dimmed'>Playlist</p>
-                    <h2 className='text-6xl font-black'>{playlist.name}</h2>
+                    <h2 className='text-4xl font-black md:text-6xl'>
+                        {playlist.name}
+                    </h2>
                 </div>
             </div>
-            <div className='p-10'>
+            <div className='p-4 md:p-10'>
                 <div className='w-full text-text-dimmed'>
-                    <div className='grid grid-cols-[auto_1fr_1fr_auto] items-center gap-4 px-6'>
+                    <div className='grid grid-cols-[auto_1fr_auto] items-center gap-4 px-6 md:grid-cols-[auto_1fr_1fr_auto]'>
                         <div className='w-8'>#</div>
                         <div>Name</div>
-                        <div>Album</div>
+                        <div className='max-md:hidden'>Album</div>
                         <div>
                             <Clock className='h-5 w-5' />
                         </div>
@@ -54,7 +56,7 @@ export default function Playlist() {
                     {playlist.tracks.items.map((item, index) => (
                         <div
                             key={item.id}
-                            className='group grid grid-cols-[auto_1fr_1fr_auto] items-center gap-4 rounded-md py-1.5 px-6 text-sm hover:bg-text-dimmed/10'
+                            className='group grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-md py-1.5 px-6 text-sm hover:bg-text-dimmed/10 md:grid-cols-[auto_1fr_1fr_auto]'
                         >
                             <div className='w-8 text-base'>
                                 <p className='group-hover:hidden'>
@@ -78,7 +80,7 @@ export default function Playlist() {
                                     </p>
                                 </div>
                             </div>
-                            <div className='truncate'>
+                            <div className='truncate max-md:hidden'>
                                 {item.track.album.name}
                             </div>
                             <div>{formatTime(item.track.duration_ms)}</div>
