@@ -65,7 +65,16 @@ export default function Player() {
         }
     }, [localPlayer])
 
-    console.log(localPlayer)
+    useEffect(() => {
+        const playback = async () => {
+            if (device) {
+                await spotifyApi.transferMyPlayback([device], true)
+            }
+            await spotifyApi.getMyDevices()
+        }
+
+        playback()
+    }, [device, spotifyApi])
 
     if (!isActive || !track || !localPlayer)
         return <div>no player, please connect</div>
