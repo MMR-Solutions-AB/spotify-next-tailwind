@@ -5,7 +5,7 @@ export default function PlayerOverlay({
     setPlayerOverlayIsOpen,
     playerOverlayIsOpen,
     track,
-    localPlayer,
+    player,
     isPaused,
     position,
 }) {
@@ -40,12 +40,14 @@ export default function PlayerOverlay({
                     <p className='text-text-dimmed'>{track.artists[0].name}</p>
                 </div>
                 <div className='mt-auto'>
-                    <PlayerControls
-                        player={localPlayer}
-                        isPaused={isPaused}
-                        position={position}
-                        track={track}
-                    />
+                    {player && (
+                        <PlayerControls
+                            player={player}
+                            isPaused={isPaused}
+                            position={position}
+                            track={track}
+                        />
+                    )}
                 </div>
             </div>
         </div>
