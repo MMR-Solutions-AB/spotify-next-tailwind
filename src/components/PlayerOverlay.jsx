@@ -8,8 +8,8 @@ export default function PlayerOverlay({
     player,
     isPaused,
     position,
+    shuffle,
 }) {
-    console.log(track)
     return (
         <div
             className='fixed top-0 h-screen w-screen bg-bg-dimmed transition-transform duration-300 md:hidden'
@@ -46,6 +46,7 @@ export default function PlayerOverlay({
                             isPaused={isPaused}
                             position={position}
                             track={track}
+                            shuffle={shuffle}
                         />
                     )}
                 </div>
